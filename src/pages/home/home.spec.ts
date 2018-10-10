@@ -1,9 +1,10 @@
 import { HomePage } from "./home";
-import { TestBed, async } from "@angular/core/testing";
+import { TestBed, async,inject } from "@angular/core/testing";
 import { IonicModule, Platform, NavController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { PlatformMock, StatusBarMock, SplashScreenMock, NavControllerMock } from "ionic-mocks";
+import { PersonProvider } from './../../providers/person/person';
 
 describe("HomePage", () => {
   let homepage;
@@ -38,11 +39,11 @@ describe("HomePage", () => {
   });
 
   it('should have calculate function', () => {
-    spyOn(homepage, 'calculate'); // we use jasmine to spy on a function
+    spyOn(homepage, 'calculate');
 
     homepage.calculate()
 
-    expect(homepage.calculate).toHaveBeenCalled(); // check if the function has been called
+    expect(homepage.calculate).toHaveBeenCalled(); 
   });
   it("should have user array", () => {
     expect(homepage.user).toEqual({ distance: 1000, age: 20 });

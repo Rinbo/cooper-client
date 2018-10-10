@@ -3,11 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Cooper Test</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding>  
   <ion-list>
     <ion-item>
       <ion-label floating>Distance</ion-label>
@@ -29,7 +29,14 @@
         <ion-label range-right>120</ion-label>
       </ion-range>
     </ion-item>
-  </ion-list>
-  
+  </ion-list>  
   <button block ion-button (click)="calculate()">Calculate</button>
+  <ion-card *ngIf="person?.assessmentMessage">
+    <ion-card-header>
+        Cooper Test Results
+    </ion-card-header>
+    <ion-card-content>
+        Gender: {{person?.gender}}, Age: {{person?.age}} <br/> Result: {{person?.assessmentMessage}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

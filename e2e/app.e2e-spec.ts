@@ -12,10 +12,8 @@ describe('App', () => {
       page.navigateTo('/');
     });
 
-    it('should have a title saying Page One', () => {
-      page.getPageOneTitleText().then(title => {
-        expect(title).toEqual('Page One');
-      });
+    it('should have a title saying Cooper Test', () => {
+      expect(page.getTitle()).toContain('Ionic App')
     });
     
     it('fill in form', () => {
