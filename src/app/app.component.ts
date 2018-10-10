@@ -23,7 +23,7 @@ export class MyApp {
               private _tokenService: Angular2TokenService,
               private alertCtrl: AlertController) {
     this._tokenService.init({
-      apiBase: 'https://your-cooper-api.herokuapp.com/api/v1'
+      apiBase: 'https://rb-cooper-api.herokuapp.com/api/v1'
     });    
     this.initializeApp();    
     this.pages = [
