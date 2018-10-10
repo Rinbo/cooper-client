@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { PersonProvider } from '../../providers/person/person';
+import { PersonProvider } from "../../providers/person/person";
 import { PerformanceDataProvider } from '../../providers/performance-data/performance-data';
-import {ModalController} from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { ResultsPage }  from "../results/results";
 
 @Component({
   selector: 'page-home',

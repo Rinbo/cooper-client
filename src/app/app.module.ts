@@ -7,17 +7,19 @@ import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { PersonProvider } from '../providers/person/person';
+import { PersonProvider } from "../providers/person/person";
 import { CooperProvider } from '../providers/cooper/cooper';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { PerformanceDataProvider } from '../providers/performance-data/performance-data';
+import { ResultsPage } from '../pages/results/results';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ResultsPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { PerformanceDataProvider } from '../providers/performance-data/performan
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ResultsPage
   ],
   providers: [
     StatusBar,
