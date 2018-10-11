@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { PerformanceDataProvider } from '../../providers/performance-data/performance-data';
+//import { timingSafeEqual } from 'crypto';
+//import { HomePage } from '../home/home'
 
 
 @Component({
@@ -22,7 +24,7 @@ export class ResultsPage {
     public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {    
     this.performanceData
       .getResults()
       .subscribe(data => {
@@ -62,6 +64,5 @@ export class ResultsPage {
 
   chartHovered(event: any): void {
     console.log(event);
-  }  
-
+  }
 }

@@ -28,7 +28,7 @@ export class HomePage {
   }
 
   showResults() {
-    this.modalCtrl.create(ResultsPage).present();
-  }
+    this.navCtrl.push(ResultsPage);
+  }  
 
 }
