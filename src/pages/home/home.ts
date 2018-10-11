@@ -4,6 +4,7 @@ import { PersonProvider } from "../../providers/person/person";
 import { PerformanceDataProvider } from '../../providers/performance-data/performance-data';
 import { ModalController } from 'ionic-angular';
 import { ResultsPage }  from "../results/results";
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'page-home',
@@ -16,7 +17,8 @@ export class HomePage {
               public person: PersonProvider, 
               public performanceData: PerformanceDataProvider,
               public modalCtrl: ModalController,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private _tokenService: Angular2TokenService) {
     this.user = { distance: 1000, age: 20, gender: "female" };
   }
   calculate(user) {
@@ -29,14 +31,13 @@ export class HomePage {
     this.navCtrl.push(ResultsPage);
   }
 
-  saveResults() {
-    if (
-    this.performanceData
-      .saveData({ performance_data: { data: { message: this.person.assessmentMessage } } })
-      .subscribe(data => console.log(data))) {
+  saveResults() {    
+    let response = this.performanceData.saveData({ performance_data: { data: { message: this.person.assessmentMessage }}});
+      response.subscribe(data => console.log(data));      
+      if (this._tokenService.userSignedIn()) {
         this.presentAlert('Save successful', 'Your data has been stored'); 
       } else {
-          this.presentAlert('Something went wrong', 'Could not save');
+          this.presentAlert('Save failed', 'You must log in first');
         }    
   }
   presentAlert(title, subTitle) {

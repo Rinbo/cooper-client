@@ -17,7 +17,7 @@ describe("AppComponent", () => {
     userType: String
   };
 
-  beforeEach(() => {
+  beforeEach(async() => {
 
     TestBed.configureTestingModule({
       declarations: [MyApp],

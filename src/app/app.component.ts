@@ -66,12 +66,12 @@ export class MyApp {
         {
           text: 'Login',
           handler: data => {
-            this.login(data);
+            this.login(data);            
           }
         }
       ]
     });
-    confirm.present();
+    confirm.present();    
   }
 
   login(credentials) {

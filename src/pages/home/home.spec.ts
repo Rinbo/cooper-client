@@ -8,6 +8,8 @@ import { PersonProvider } from './../../providers/person/person';
 import { PerformanceDataProvider } from './../../providers/performance-data/performance-data';
 import { CooperProvider } from './../../providers/cooper/cooper';
 import { Angular2TokenService } from 'angular2-token';
+import { Http, BaseRequestOptions, RequestMethod } from '@angular/http'
+import { MockBackend } from '@angular/http/testing';
 
 describe("HomePage", () => {
   let homepage;
@@ -19,11 +21,20 @@ describe("HomePage", () => {
       ],
       imports: [IonicModule.forRoot(HomePage)],
       providers: [
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend, defaultOptions) => {
+            return new Http(backend, defaultOptions)
+          },
+          deps: [MockBackend, BaseRequestOptions]
+        },
         { provide: Platform, useFactory: () => PlatformMock.instance() },
         { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
         { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
         { provide: NavController, useFactory: () => NavControllerMock.instance() },
-        PersonProvider, CooperProvider, PerformanceDataProvider, Angular2TokenService        
+        PersonProvider, CooperProvider, PerformanceDataProvider, Angular2TokenService  
       ]
     }).compileComponents();
   }));
@@ -39,7 +50,7 @@ describe("HomePage", () => {
   });
 
   it('should have user default values', () => {
-    expect(homepage.user).toEqual({ distance: 1000, age: 20 });
+    expect(homepage.user).toEqual({ distance: 1000, age: 20, gender: 'female' });
   });
 
   it('should have calculate function', () => {
@@ -49,21 +60,13 @@ describe("HomePage", () => {
 
     expect(homepage.calculate).toHaveBeenCalled(); 
   });
-  it("should have user array", () => {
-    expect(homepage.user).toEqual({ distance: 1000, age: 20 });
-
-  });
-  it("should have calculate function", () => {
-    expect(homepage.calculate).toBeTruthy();
-  });
-
+  
   it("calculate function should call person provider doAssessment function", inject(
-    [PersonProvider],
-    person => {
-      homepage.user = { age: 25, gender: "female", distance: 2500 };
+    [PersonProvider], person => {
+      let user = { age: 25, gender: "female", distance: 2500 };
       spyOn(person, "doAssessment").and.returnValue("Above average");
   
-      homepage.calculate();
+      homepage.calculate(user);
   
       expect(person.doAssessment).toHaveBeenCalled();
       expect(person.doAssessment).toHaveBeenCalledWith(2500);
