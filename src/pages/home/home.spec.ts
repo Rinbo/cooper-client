@@ -1,5 +1,5 @@
 import { HomePage } from "./home";
-import { TestBed, async,inject } from "@angular/core/testing";
+import { TestBed, async, inject } from "@angular/core/testing";
 import { IonicModule, Platform, NavController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -23,7 +23,7 @@ describe("HomePage", () => {
         { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
         { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
         { provide: NavController, useFactory: () => NavControllerMock.instance() },
-        PersonProvider, CooperProvider, PerformanceDataProvider, Angular2TokenService
+        PersonProvider, CooperProvider, PerformanceDataProvider, Angular2TokenService        
       ]
     }).compileComponents();
   }));

@@ -40,4 +40,7 @@
         Gender: {{person?.gender}}, Age: {{person?.age}} <br/> Result: {{person?.assessmentMessage}}
     </ion-card-content>
   </ion-card>
+  <button block ion-button (click)="saveResults()" *ngIf="person?.assessmentMessage">
+    Save Result
+  </button>
 </ion-content>

@@ -7,6 +7,7 @@ export class PerformanceDataProvider {
   constructor(private _tokenService: Angular2TokenService) {}
 
   saveData(data) {
+    debugger;
     return this._tokenService.post('performance_data', data).map(data => data);
   }
   getResults() {
