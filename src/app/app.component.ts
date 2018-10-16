@@ -73,10 +73,56 @@ export class MyApp {
     });
     confirm.present();    
   }
+  registerPopUp() {
+    console.log('popup');
+    let confirm = this.alertCtrl.create({
+      title: 'Register',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'email'
+        },
+        {
+          name: 'password',
+          placeholder: 'password',
+          type: 'password'
+        },
+        {
+          name: 'passwordConfirmation',
+          placeholder: 'password confirmation',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Register',
+          handler: data => {
+            this.register(data);            
+          }
+        }
+      ]
+    });
+    confirm.present();    
+  }
 
   login(credentials) {
     this._tokenService
       .signIn(credentials)
+        .subscribe(
+         res => (this.currentUser = res.json().data),
+         err => console.error('error')
+      );
+  }
+
+  register(credentials) {
+    this._tokenService
+      .registerAccount(credentials)
         .subscribe(
          res => (this.currentUser = res.json().data),
          err => console.error('error')
